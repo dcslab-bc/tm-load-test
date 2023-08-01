@@ -1,7 +1,6 @@
 package loadtest
 
 import (
-	"encoding/base64"
 	"encoding/json"
 	"fmt"
 	"net/url"
@@ -214,9 +213,11 @@ func (t *Transactor) sendLoop() {
 	}
 }
 
-func (t *Transactor) writeTx(tx []byte) error {
-	txBase64 := base64.StdEncoding.EncodeToString(tx)
-	paramsJSON, err := json.Marshal(map[string]interface{}{"tx": txBase64})
+// func (t *Transactor) writeTx(tx []byte) error {
+func (t *Transactor) writeTx(tx string) error {
+	// txBase64 := base64.StdEncoding.EncodeToString(tx)
+	// paramsJSON, err := json.Marshal(map[string]interface{}{"tx": txBase64})
+	paramsJSON, err := json.Marshal(map[string]interface{}{"tx": tx})
 	if err != nil {
 		return err
 	}
